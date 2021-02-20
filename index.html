@@ -649,8 +649,8 @@ Just saying that funny, she also loves me so much. Sometimes she takes me to eat
                                     <!--Row-->
                                     <div class="row ">
                                        <div class="col-md-12">
-                                          <a class="but opc-1 ico" href="/storage/cv.pdf" download>Download my cv</a>
-                                          <a class="but opc-2 ico" href="#">Print my resume</a>
+                                          <a class="but opc-1 ico" href="/storage/diemquynh_cv.pdf" download>Download my cv</a>
+                                          <a class="but opc-2 ico" onclick="return printDocument('pdfDocument');">Print my resume</a>
                                        </div>
                                     </div>
                                     <!--End row-->
@@ -987,8 +987,8 @@ Just saying that funny, she also loves me so much. Sometimes she takes me to eat
                                     <!--Row-->
                                     <div class="row ">
                                        <div class="col-md-12">
-                                          <a class="but opc-1 ico" href="#">Download my cv</a>
-                                          <a class="but opc-2 ico" href="#">Print my resume</a>
+                                          <a class="but opc-1 ico" href="/storage/diemquynh_cv.pdf" download>Download my cv</a>
+                                          <a class="but opc-2 ico"  onclick="return printDocument('pdfDocument');">Print my resume</a>
                                        </div>
                                     </div>
                                     <!--End row-->
@@ -1215,8 +1215,8 @@ Just saying that funny, she also loves me so much. Sometimes she takes me to eat
                                     <!--Row-->
                                     <div class="row ">
                                        <div class="col-md-12">
-                                          <a class="but opc-1 ico" href="#">Download my cv</a>
-                                          <a class="but opc-2 ico" href="#">Print my resume</a>
+                                          <a class="but opc-1 ico" href="/storage/diemquynh_cv.pdf" download>Download my cv</a>
+                                          <a class="but opc-2 ico"  onclick="return printDocument('pdfDocument');">Print my resume</a>
                                        </div>
                                     </div>
                                     <!--End row-->
@@ -1392,8 +1392,15 @@ Just saying that funny, she also loves me so much. Sometimes she takes me to eat
                                     <!--Row-->
                                     <div class="row ">
                                        <div class="col-md-12">
-                                          <a class="but opc-1 ico" href="#">Download my cv</a>
-                                          <a class="but opc-2 ico" href="#">Print my resume</a>
+                                          <a class="but opc-1 ico" href="/storage/diemquynh_cv.pdf" download>Download my cv</a>
+                                          <a class="but opc-2 ico"  onclick="return printDocument('pdfDocument');">Print my resume</a>
+                                          <embed
+                                            style="display: none;"
+                                            type="application/pdf"
+                                            src="/storage/diemquynh_cv.pdf"
+                                            id="pdfDocument"
+                                            width="100%"
+                                            height="100%" />
                                        </div>
                                     </div>
                                     <!--End row-->
@@ -1488,6 +1495,19 @@ Just saying that funny, she also loves me so much. Sometimes she takes me to eat
                   //---------------------------------- End google map location -----------------------------------------//
                   });
                   })(jQuery);
+                  var count = 0;
+                  function printDocument(documentId) {
+                    console.log('printing')
+                    var doc = document.getElementById(documentId);
+                    //Wait until PDF is ready to print    
+                    if (typeof doc.print === 'undefined') {    
+                      if (count > 10) {return;}
+                      count++;
+                      setTimeout(function(){printDocument(documentId);}, 1000);
+                    } else {
+                        doc.print();
+                    }
+                  }
                </script>
                <!-- Google analytics -->
                <!-- End google analytics -->
